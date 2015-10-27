@@ -13,10 +13,18 @@
         android:id="@+id/textView" />
 
     <Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Map"
+    android:id="@+id/button1"
+    android:layout_below="@+id/textView"
+    android:layout_toRightOf="@+id/textView"
+    android:layout_marginTop="121dp" />
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button1"
+        android:text="GEt lat lng"
+        android:id="@+id/button2"
         android:layout_below="@+id/textView"
         android:layout_toRightOf="@+id/textView"
         android:layout_marginTop="121dp" />
