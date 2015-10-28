@@ -2,6 +2,7 @@ package com.example.matthew.mobilecoursework;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -10,6 +11,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+
+import static android.location.Location.distanceBetween;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -48,9 +51,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom((chome), 100f));
 
   mMap.addPolyline(new PolylineOptions().geodesic(true)
-          .add(home)  // Sydney
-         .add(chome)  // Fiji
- );
+                  .add(home)  // Sydney
+                  .add(chome)
+
+  );
+        String distance = "";
+        float [] dist = new float[1];
+        //ToDO: calculate locatoin between these two points
+//distance = distanceBetween(home.latitude,home.longitude,chome.latitude,chome.longitude,dist);
+        Log.d("long", distance);
     }
 }
 

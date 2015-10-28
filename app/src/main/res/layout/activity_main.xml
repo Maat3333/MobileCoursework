@@ -25,7 +25,22 @@
         android:layout_height="wrap_content"
         android:text="GEt lat lng"
         android:id="@+id/button2"
-        android:layout_below="@+id/textView"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_marginTop="121dp" />
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/button1" />
+
+    <TextView
+        android:text="Hello World!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mLatitudeText"
+        android:layout_below="@+id/button2"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Hello World!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mLongditudeText"
+        android:layout_below="@+id/mLatitudeText"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
