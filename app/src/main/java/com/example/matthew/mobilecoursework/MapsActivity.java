@@ -1,8 +1,14 @@
 package com.example.matthew.mobilecoursework;
 
-import android.support.v4.app.FragmentActivity;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,11 +18,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-import static android.location.Location.distanceBetween;
-
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    FragmentManager fmAboutDialgue;// needed for about
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +32,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        //needed for about
+        fmAboutDialgue = this.getFragmentManager();
     }
 
 
@@ -60,6 +69,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //ToDO: calculate locatoin between these two points
 //distance = distanceBetween(home.latitude,home.longitude,chome.latitude,chome.longitude,dist);
         Log.d("long", distance);
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mMap:
+                Intent mcMap = new Intent(this, MapsActivity.class);
+                this.startActivity(mcMap);
+                return true;
+            case R.id.mMain:
+                Intent mcMain = new Intent(this, MainActivity.class);
+                this.startActivity(mcMain);
+                return true;
+            case R.id.mRss:
+                Intent mcRss = new Intent(this, RssActivity.class);
+                this.startActivity(mcRss);
+                return true;
+            case R.id.mAbout:
+                DialogFragment mcAboutDlg = new mcAboutDialogue();
+                mcAboutDlg.show(fmAboutDialgue, "mcAboutDlg");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
 
