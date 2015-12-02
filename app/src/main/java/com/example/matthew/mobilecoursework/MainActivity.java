@@ -10,23 +10,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-    Button testButton;
-    Button testButton2;
-    TextView mLatitudeText;
-    TextView mLongitudeText;
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     FragmentManager fmAboutDialgue;// needed for about
+    ListView listView;
+    ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +33,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         buildGoogleApiClient();
 
-        testButton = (Button) findViewById(R.id.button1);
-        testButton.setOnClickListener(this);
+        String[] test = {"1","2","3","4","5","6","7","8"};
 
-        testButton2 = (Button) findViewById(R.id.button2);
-        testButton2.setOnClickListener(this);
+        ArrayAdapter<String> adapter =  new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, test);
 
-        mLatitudeText = (TextView) findViewById(R.id.mLatitudeText);
-        mLongitudeText = (TextView) findViewById(R.id.mLongditudeText);
+        listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(adapter);
 
         //needed for about
         fmAboutDialgue = this.getFragmentManager();
@@ -54,9 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null) {
-            mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
             Log.d("lat", (String.valueOf(mLastLocation.getLatitude())));
-            mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
             Log.d("long", (String.valueOf(mLastLocation.getLongitude())));
         } else {
             Toast.makeText(getApplicationContext(), "Location Null", Toast.LENGTH_SHORT).show();
@@ -70,23 +64,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .addApi(LocationServices.API)
                 .build();
     }
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button1:
-                Intent test = new Intent(getApplicationContext(), MapsActivity.class);
-
-                startActivity(test);
-                break;
-            case R.id.button2:
-
-                // need to put the code here to run clsGps and get the latlng
-                break;
-        }
-    }
-
 
     @Override
     public void onConnectionSuspended(int i) {

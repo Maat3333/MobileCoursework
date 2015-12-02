@@ -19,7 +19,8 @@
         <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"
-                    android:label="Arrivals"  />
+                    android:label="Arrivals"
+                    />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -38,12 +39,15 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" >
+            android:label="@string/title_activity_maps"
+            android:icon="@drawable/ic_action_map"
+            android:showAsAction="always">
         </activity>
         <activity
             android:name=".RssActivity"
-            android:label="Departures" >
-        </activity>
+            android:label="Departures"
+            android:icon="@drawable/ic_action_departures"/>
+
     </application>
 
 </manifest>
