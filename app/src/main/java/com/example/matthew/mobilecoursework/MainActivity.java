@@ -38,39 +38,46 @@ public class MainActivity extends AppCompatActivity {
         //needed for about
         fmAboutDialgue = this.getFragmentManager();
 
+        //Creating a new layout which is used to contain the canvas
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.myDrawing);
         mView = new DrawingView(this);
         layout.addView(mView, new RelativeLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT ,
                 LinearLayout.LayoutParams.MATCH_PARENT));
+        //Calling function used to set up paint brush
         SetUpPaintBrush();
     }
 
+    //Sets up the different values needed for the brush e.g. colour and stroke style
     private void SetUpPaintBrush() {
         mPaint = new Paint();
         mPaint.setDither(true);
-        mPaint.setColor(0xFFFFFF00);
+        mPaint.setColor(getResources().getColor(R.color.colorPrimary));
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setStrokeWidth(3);
     }
 
+    // Sub class needed because MainActivity extends appCompact not view, used to handle the touch event
     class DrawingView extends View {
+        //Member level variables
         private Path path;
         private Bitmap mBitmap;
         private Canvas mCanvas;
 
+        //ToDo: can 
         public DrawingView(Context context) {
             super(context);
             path = new Path();
             mBitmap = Bitmap.createBitmap(820, 480, Bitmap.Config.ARGB_8888);
             mCanvas = new Canvas(mBitmap);
-            this.setBackgroundColor(Color.BLACK);
+            this.setBackgroundColor(Color.WHITE);
         }
-
+        //Creates an array of the object used for storing where has been painted on the canvas
         private ArrayList<PathWithPaint> _graphics1 = new ArrayList<PathWithPaint>();
 
+        //Listens for a touch then paints to the canvas
         @Override
         public boolean onTouchEvent(MotionEvent event) {
             PathWithPaint pp = new PathWithPaint();
@@ -87,21 +94,20 @@ public class MainActivity extends AppCompatActivity {
             invalidate();
             return true;
         }
-
+        //ToDo:Not completely sure what this does come back to it
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             if (_graphics1.size() > 0) {
-                canvas.drawPath(
-                        _graphics1.get(_graphics1.size() - 1).getPath(),
-                        _graphics1.get(_graphics1.size() - 1).getmPaint());
+                //Not sure about the convention "_graphics"
+                canvas.drawPath( _graphics1.get(_graphics1.size() - 1).getPath(),
+                                _graphics1.get(_graphics1.size() - 1).getmPaint());
             }
         }
     }
 
-
-
-
+//Standard Code for menu used in all classes.
+//ToDo: Need to find a way of not repeating this code!
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -124,44 +130,15 @@ public class MainActivity extends AppCompatActivity {
                 this.startActivity(mcRss);
                 return true;
             case R.id.mAbout:
-                DialogFragment mcAboutDlg = new mcAboutDialogue();
+                DialogFragment mcAboutDlg = new clsAbout();
                 mcAboutDlg.show(fmAboutDialgue, "mcAboutDlg");
                 return true;
             case R.id.mSound:
-                Intent mcSound = new Intent(this, SoundBoard.class);
+                Intent mcSound = new Intent(this, clsSoundboard.class);
                 this.startActivity(mcSound);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-//ToDo: implement https://guides.codepath.com/android/Basic-Painting-with-Views or this http://v4all123.blogspot.co.uk/2013/11/simple-drawing-example-in-android.html bit more fun? draw a cloud or something
-
-    public class PathWithPaint {
-        private Path path;
-
-        public Path getPath() {
-            return path;
-        }
-
-        public void setPath(Path path) {
-            this.path = path;
-        }
-
-        private Paint mPaint;
-
-        public Paint getmPaint() {
-            return mPaint;
-        }
-
-        public void setmPaint(Paint mPaint) {
-            this.mPaint = mPaint;
-        }
-    }
-
-
 }
-
-
-
-

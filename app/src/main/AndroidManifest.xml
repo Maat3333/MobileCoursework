@@ -51,7 +51,7 @@
         android:label="UK Weather Info"
         android:icon="@drawable/ic_action_departures"/>
         <activity
-            android:name=".SoundBoard"
+            android:name=".clsSoundboard"
             android:label="Weather Sounds"
             android:icon="@drawable/ic_action_departures"/>
     </application>

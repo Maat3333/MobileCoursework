@@ -97,11 +97,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 this.startActivity(mcRss);
                 return true;
             case R.id.mAbout:
-                DialogFragment mcAboutDlg = new mcAboutDialogue();
+                DialogFragment mcAboutDlg = new clsAbout();
                 mcAboutDlg.show(fmAboutDialgue, "mcAboutDlg");
                 return true;
             case R.id.mSound:
-                Intent mcSound = new Intent(this, SoundBoard.class);
+                Intent mcSound = new Intent(this, clsSoundboard.class);
                 this.startActivity(mcSound);
                 return true;
             default:
