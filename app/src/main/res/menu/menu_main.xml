@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/mMain"
-        android:title="Arrivals"
-        android:icon="@drawable/ic_action_arrivals"/>
+        android:title="Home"
+        android:icon="@drawable/windicon"/>
     <item android:id="@+id/mRss"
-        android:title="Departures"
+        android:title="Weather"
         android:icon="@drawable/ic_action_departures"/>
     <item android:id="@+id/mMap"
         android:title="Map"
         android:icon="@drawable/ic_action_map"/>
     <item android:id="@+id/mAbout"
         android:title="About"
+        android:icon="@drawable/ic_action_about"/>
+    <item android:id="@+id/mSound"
+        android:title="Sound"
         android:icon="@drawable/ic_action_about"/>
 
 </menu>

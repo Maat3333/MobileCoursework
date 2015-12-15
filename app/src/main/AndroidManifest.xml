@@ -13,8 +13,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher_flight"
-        android:label="Flight Data"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Weather"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity android:name=".MainActivity" >
@@ -22,7 +22,7 @@
             <intent-filter>
 
                 <action android:name="android.intent.action.MAIN"
-                    android:label="Arrivals"
+                    android:label="Home"
                     />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -47,10 +47,13 @@
             android:showAsAction="always">
         </activity>
         <activity
-            android:name=".RssActivity"
-            android:label="Departures"
+        android:name=".RssActivity"
+        android:label="UK Weather Info"
+        android:icon="@drawable/ic_action_departures"/>
+        <activity
+            android:name=".SoundBoard"
+            android:label="Weather Sounds"
             android:icon="@drawable/ic_action_departures"/>
-
     </application>
 
 </manifest>

@@ -63,6 +63,10 @@ public class RssActivity extends AppCompatActivity {
                 DialogFragment mcAboutDlg = new mcAboutDialogue();
                 mcAboutDlg.show(fmAboutDialgue, "mcAboutDlg");
                 return true;
+            case R.id.mSound:
+                Intent mcSound = new Intent(this, SoundBoard.class);
+                this.startActivity(mcSound);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

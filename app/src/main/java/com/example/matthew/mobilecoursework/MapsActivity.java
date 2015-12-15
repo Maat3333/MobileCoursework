@@ -18,6 +18,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import static android.location.Location.distanceBetween;
+
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -51,27 +53,27 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng home = new LatLng(54.550442, -1.915154);
-        mMap.addMarker(new MarkerOptions().position(home).title("Marker in home"));
+        LatLng BaltasoundNo2 = new LatLng(60.749, -0.854);
+        mMap.addMarker(new MarkerOptions().position(BaltasoundNo2).title("Marker in home"));
 
 
-        LatLng chome = new LatLng(54.543656, -1.922299);
-        mMap.addMarker(new MarkerOptions().position(chome).title("Marker in c"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom((chome), 100f));
+        LatLng BarwhillantyHouse = new LatLng(55.014, -3.996);
+        mMap.addMarker(new MarkerOptions().position(BarwhillantyHouse).title("Marker in c"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom((BarwhillantyHouse), 100f));
 
   mMap.addPolyline(new PolylineOptions().geodesic(true)
-                  .add(home)  // Sydney
-                  .add(chome)
+                  .add(BaltasoundNo2)  // Sydney
+                  .add(BarwhillantyHouse)
 
   );
-        String distance = "";
-        float [] dist = new float[1];
+
+        float[] dist = new float[1];
         //ToDO: calculate locatoin between these two points
-//distance = distanceBetween(home.latitude,home.longitude,chome.latitude,chome.longitude,dist);
+        distanceBetween(BaltasoundNo2.latitude, BaltasoundNo2.longitude, BarwhillantyHouse.latitude, BarwhillantyHouse.longitude, dist);
+        float s =dist[0] * 0.000621371192f;// ToDo: calculating something dont know if its km or miles or accurate
+        String distance = Float.toString(s);
         Log.d("long", distance);
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -97,6 +99,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.mAbout:
                 DialogFragment mcAboutDlg = new mcAboutDialogue();
                 mcAboutDlg.show(fmAboutDialgue, "mcAboutDlg");
+                return true;
+            case R.id.mSound:
+                Intent mcSound = new Intent(this, SoundBoard.class);
+                this.startActivity(mcSound);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

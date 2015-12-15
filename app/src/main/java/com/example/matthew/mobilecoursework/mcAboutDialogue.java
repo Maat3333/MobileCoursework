@@ -20,7 +20,7 @@ public class mcAboutDialogue extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder mcAboutDialog = new AlertDialog.Builder(getActivity());
         // ToDo: look into a string.format type thing
-        mcAboutDialog.setMessage("This app will show you the arrivals and departures of local airports and display the locations of the airport on a map."+System.getProperty("line.separator") +" Created by Matthew Metcalfe 2015").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        mcAboutDialog.setMessage("This app will show information on Uk weather warnings."+System.getProperty("line.separator") +" Created by Matthew Metcalfe 2015").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
 
