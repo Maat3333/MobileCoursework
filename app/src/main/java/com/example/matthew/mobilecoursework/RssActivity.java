@@ -86,10 +86,7 @@ public class RssActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.mMap:
-                Intent mcMap = new Intent(this, MapsActivity.class);
-                this.startActivity(mcMap);
-                return true;
+
             case R.id.mMain:
                 Intent mcMain = new Intent(this, MainActivity.class);
                 this.startActivity(mcMain);

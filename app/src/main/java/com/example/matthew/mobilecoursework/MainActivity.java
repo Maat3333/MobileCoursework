@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 //Standard Code for menu used in all classes.
-//ToDo: Need to find a way of not repeating this code!
+    //ToDo: Need to find a way of not repeating this code!
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -117,10 +117,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.mMap:
-                Intent mcMap = new Intent(this, MapsActivity.class);
-                this.startActivity(mcMap);
-                return true;
             case R.id.mMain:
                 Intent mcMain = new Intent(this, MainActivity.class);
                 this.startActivity(mcMain);
@@ -136,6 +132,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mSound:
                 Intent mcSound = new Intent(this, clsSoundboard.class);
                 this.startActivity(mcSound);
+                return true;
+            case R.id.mMapp:
+                Intent mcMapp = new Intent(this,mcMapActivity.class);
+                this.startActivity(mcMapp);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

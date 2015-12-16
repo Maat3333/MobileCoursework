@@ -6,14 +6,14 @@
     <item android:id="@+id/mRss"
         android:title="Weather"
         android:icon="@drawable/ic_action_departures"/>
-    <item android:id="@+id/mMap"
-        android:title="Map"
-        android:icon="@drawable/ic_action_map"/>
     <item android:id="@+id/mAbout"
         android:title="About"
         android:icon="@drawable/ic_action_about"/>
     <item android:id="@+id/mSound"
         android:title="Sound"
+        android:icon="@drawable/ic_action_about"/>
+    <item android:id="@+id/mMapp"
+        android:title="Map"
         android:icon="@drawable/ic_action_about"/>
 
 </menu>
