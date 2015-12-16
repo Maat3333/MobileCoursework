@@ -15,21 +15,26 @@ import android.widget.Button;
 /**
  * Created by matthew on 15/12/2015.
  */
+//Class for making sounds play on a button press and stop when the stop button is pressed
 public class clsSoundboard extends AppCompatActivity {
-//ToDo: come back to here and allow for sounds to be stopped and a different one played
+    // needed for the about dialog
     FragmentManager fmAboutDialgue;
+    // used to play sounds
     MediaPlayer mp;
+    // stores 'this' so it can be used in a subclass
     private clsSoundboard local;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sound);
+
         local = this;
         //needed for about
         fmAboutDialgue = this.getFragmentManager();
 
+        //Sets up button and assigns on click listener to play a sound clip
         Button btnRain = (Button)this.findViewById(R.id.btnRain);
-
         btnRain.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
              //   mp.stop();
@@ -38,8 +43,8 @@ public class clsSoundboard extends AppCompatActivity {
             }
         });
 
+        //Sets up button and assigns on click listener to play a sound clip
         Button btnWind = (Button)this.findViewById(R.id.btnWind);
-
         btnWind.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 mp = MediaPlayer.create(local, R.raw.wind);
@@ -48,8 +53,8 @@ public class clsSoundboard extends AppCompatActivity {
             }
         });
 
+        //Sets up button and assigns on click listener to play a sound clip
         Button btnThunder = (Button)this.findViewById(R.id.btnThunder);
-
         btnThunder.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             //    mp.stop();
@@ -57,7 +62,7 @@ public class clsSoundboard extends AppCompatActivity {
                 mp.start();
             }
         });
-
+        //Sets up button and assigns on click listener to stop all sounds
         Button btnStop = (Button)this.findViewById(R.id.btnStop);
         btnStop.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -67,7 +72,7 @@ public class clsSoundboard extends AppCompatActivity {
 
     }
 
-
+    //Standard Code for menu used in all classes.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -92,6 +97,14 @@ public class clsSoundboard extends AppCompatActivity {
             case R.id.mSound:
                 Intent mcSound = new Intent(this, clsSoundboard.class);
                 this.startActivity(mcSound);
+                return true;
+            case R.id.mMapp:
+                Intent mcMapp = new Intent(this,mcMapActivity.class);
+                this.startActivity(mcMapp);
+                return true;
+            case R.id.mSave:
+                Intent mcSaved = new Intent(this,mcSavingDataOutput.class);
+                this.startActivity(mcSaved);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

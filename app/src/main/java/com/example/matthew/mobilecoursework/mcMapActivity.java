@@ -33,6 +33,7 @@ import static android.location.Location.distanceBetween;
  * Created by matthew on 15/12/2015.
  */
 public class mcMapActivity extends FragmentActivity {
+    // list of map data object
     List<mcMapData> mapDataList;
     private Marker[] mapDataMarkerList = new Marker[5];
     private GoogleMap mapStarSigns;
@@ -48,7 +49,7 @@ public class mcMapActivity extends FragmentActivity {
         setContentView(R.layout.mc_map_view);
 
         fmAboutDialgue = this.getFragmentManager();
-
+        //connecting to db
         mapDataList = new ArrayList<mcMapData>();
         mcMapDataDBMgr mapDB = new mcMapDataDBMgr(this, "mapEKFamous5.s3db",null,1);
         try
@@ -72,14 +73,17 @@ public class mcMapActivity extends FragmentActivity {
             mapStarSigns.getUiSettings().setCompassEnabled(true);
             mapStarSigns.getUiSettings().setMyLocationButtonEnabled(true);
             mapStarSigns.getUiSettings().setRotateGesturesEnabled(true);
+            // adding functionality to location button
             mapStarSigns.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
                 @Override
                 public boolean onMyLocationButtonClick() {
                     Log.e("s", "t");
+                    //using current loaction
                     Location l = mapStarSigns.getMyLocation();
                     double lat = l.getLatitude();
                     double lng = l.getLongitude();
                     LatLng myLatLng = new LatLng(lat,lng);
+                    //updating camera adding line and calculating distance
                     mapStarSigns.moveCamera(CameraUpdateFactory.newLatLngZoom(myLatLng, 12));
                     mapStarSigns.addPolyline(new PolylineOptions().geodesic(true)
                             .add(myLatLng)
@@ -104,7 +108,7 @@ public class mcMapActivity extends FragmentActivity {
 
         return false;
     }
-
+// adding markers to map
     public void AddMarkers(){
         MarkerOptions marker;
         mcMapData mapData;
@@ -151,7 +155,6 @@ public class mcMapActivity extends FragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-
             case R.id.mMain:
                 Intent mcMain = new Intent(this, MainActivity.class);
                 this.startActivity(mcMain);
@@ -168,10 +171,16 @@ public class mcMapActivity extends FragmentActivity {
                 Intent mcSound = new Intent(this, clsSoundboard.class);
                 this.startActivity(mcSound);
                 return true;
-
+            case R.id.mMapp:
+                Intent mcMapp = new Intent(this,mcMapActivity.class);
+                this.startActivity(mcMapp);
+                return true;
+            case R.id.mSave:
+                Intent mcSaved = new Intent(this,mcSavingDataOutput.class);
+                this.startActivity(mcSaved);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }

@@ -19,14 +19,14 @@ public class clsAbout extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder mcAboutDialog = new AlertDialog.Builder(getActivity());
-        // ToDo: look into a string.format type thing
+        //Setting the message to be displayed
         mcAboutDialog.setMessage("This app will show information on Uk weather warnings."
                 +System.getProperty("line.separator") +" Created by Matthew Metcalfe 2015")
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-
+                    //OnClick listner closes dialog when finished(left blank intentionally)
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        //ToDo: Do i need something in here?
+
                     }
                 });
 

@@ -23,10 +23,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    //GoogleApiClient mGoogleApiClient;
-    //Location mLastLocation;
     FragmentManager fmAboutDialgue;// needed for about
-
     View mView;
     private Paint mPaint;
 
@@ -66,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         private Bitmap mBitmap;
         private Canvas mCanvas;
 
-        //ToDo: can 
+
         public DrawingView(Context context) {
             super(context);
             path = new Path();
@@ -106,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//Standard Code for menu used in all classes.
+    //Standard Code for menu used in all classes.
     //ToDo: Need to find a way of not repeating this code!
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -136,6 +133,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mMapp:
                 Intent mcMapp = new Intent(this,mcMapActivity.class);
                 this.startActivity(mcMapp);
+                return true;
+            case R.id.mSave:
+                Intent mcSaved = new Intent(this,mcSavingDataOutput.class);
+                this.startActivity(mcSaved);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
